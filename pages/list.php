@@ -1,6 +1,6 @@
 <?php
-require_once 'includes/header.php';
-require_once 'includes/db.php';
+require_once '../includes/header.php';
+require_once '../includes/db.php';
 
 // Xử lý bộ lọc
 $type = $_GET['type'] ?? '';
@@ -103,7 +103,7 @@ $properties = $stmt->fetchAll();
                                 $images = json_decode($property['images'] ?? '[]', true);
                                 $first_image = $images[0] ?? 'default.jpg';
                                 ?>
-                                <img src="uploads/<?php echo htmlspecialchars($first_image); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($property['title']); ?>" style="height: 200px; object-fit: cover;">
+                                <img src="../uploads/<?php echo htmlspecialchars($first_image); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($property['title']); ?>" style="height: 200px; object-fit: cover;">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo htmlspecialchars($property['title']); ?></h5>
                                     <p class="card-text">
@@ -123,5 +123,5 @@ $properties = $stmt->fetchAll();
 </div>
 
 <?php
-require_once 'includes/footer.php';
+require_once '../includes/footer.php';
 ?> 
