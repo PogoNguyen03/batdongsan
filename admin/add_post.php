@@ -3,7 +3,7 @@ session_start();
 require_once '../includes/db.php';
 
 // Kiểm tra đăng nhập
-if(!isset($_SESSION['admin_logged_in'])) {
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header('Location: login.php');
     exit();
 }

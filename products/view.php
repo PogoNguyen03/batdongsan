@@ -31,11 +31,11 @@ $images = json_decode($property['images'], true);
     <div class="row">
         <!-- Image Gallery -->
         <div class="col-md-8">
-            <div id="propertyCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+            <div id="propertyCarousel" class="carousel slide carousel-fade mb-4" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <?php foreach($images as $index => $image): ?>
                         <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
-                            <img src="../uploads/<?php echo $image; ?>" class="d-block w-100" alt="Property Image" style="height: 500px; object-fit: cover;">
+                            <img src="../uploads/<?php echo $image; ?>" class="d-block w-100" alt="Property Image" style="height: 40rem; object-fit: cover;">
                         </div>
                     <?php endforeach; ?>
                 </div>

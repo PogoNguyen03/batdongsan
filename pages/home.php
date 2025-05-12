@@ -21,7 +21,8 @@ $properties = $stmt->fetchAll();
                 <!-- Carousel Items -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="../assets/img/banner1.webp" class="d-block w-100" alt="Banner 1" style="height: 500px; object-fit: cover;">
+                        <img src="../assets/img/banner1.webp" class="d-block w-100" alt="Banner 1"
+                            style="height: 500px; object-fit: cover;">
                         <!-- <div class="carousel-caption d-none d-md-block">
                             <h1 class="display-4 fw-bold">Tìm Kiếm Bất Động Sản Mơ Ước</h1>
                             <p class="lead">Hàng ngàn bất động sản chất lượng đang chờ bạn</p>
@@ -29,7 +30,8 @@ $properties = $stmt->fetchAll();
                         </div> -->
                     </div>
                     <div class="carousel-item">
-                        <img src="../assets/img/banner2.webp" class="d-block w-100" alt="Banner 2" style="height: 500px; object-fit: cover;">
+                        <img src="../assets/img/banner2.webp" class="d-block w-100" alt="Banner 2"
+                            style="height: 500px; object-fit: cover;">
                         <!-- <div class="carousel-caption d-none d-md-block">
                             <h1 class="display-4 fw-bold">Đầu Tư Thông Minh</h1>
                             <p class="lead">Cơ hội đầu tư bất động sản với tiềm năng sinh lời cao</p>
@@ -66,7 +68,8 @@ $properties = $stmt->fetchAll();
                 <div class="card-body">
                     <form action="list.php" method="GET" class="row g-3">
                         <div class="col-md-4">
-                            <input type="text" class="form-control" name="keyword" placeholder="Tìm kiếm theo từ khóa...">
+                            <input type="text" class="form-control" name="keyword"
+                                placeholder="Tìm kiếm theo từ khóa...">
                         </div>
                         <div class="col-md-3">
                             <select class="form-select" name="type">
@@ -99,27 +102,34 @@ $properties = $stmt->fetchAll();
     <!-- Featured Properties -->
     <h2 class="mb-4">Bất Động Sản Mới Nhất</h2>
     <div class="row">
-        <?php foreach($properties as $property): ?>
+        <?php foreach ($properties as $property): ?>
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <?php 
+                    <?php
                     $images = json_decode($property['images'], true);
                     $first_image = $images[0] ?? 'default.jpg';
                     ?>
-                    <img src="../uploads/<?php echo $first_image; ?>" class="card-img-top" alt="<?php echo htmlspecialchars($property['title']); ?>" style="height: 200px; object-fit: cover;">
+                    <a href="../products/view.php?id=<?php echo $property['id']; ?>" class="text-decoration-none">
+                        <img src="../uploads/<?php echo $first_image; ?>" class="card-img-top"
+                            alt="<?php echo htmlspecialchars($property['title']); ?>"
+                            style="height: 200px; object-fit: cover;"></a>
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo htmlspecialchars($property['title']); ?></h5>
+                        <a href="../products/view.php?id=<?php echo $property['id']; ?>" class="text-decoration-none">
+                            <h5 class="card-title text-dark"><?php echo htmlspecialchars($property['title']); ?></h5>
+                        </a>
                         <p class="card-text text-danger fw-bold"><?php echo number_format($property['price']); ?> VNĐ</p>
                         <p class="card-text">
                             <i class="bi bi-geo-alt"></i> <?php echo htmlspecialchars($property['address']); ?><br>
                             <i class="bi bi-arrows-angle-expand"></i> <?php echo $property['area']; ?> m²
                         </p>
-                        <a href="../products/view.php?id=<?php echo $property['id']; ?>" class="btn btn-primary">Xem chi tiết</a>
+                        <a href="../products/view.php?id=<?php echo $property['id']; ?>" class="btn btn-primary">Xem chi
+                            tiết</a>
                     </div>
+
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
 </div>
 
-<?php require_once '../includes/footer.php'; ?> 
+<?php require_once '../includes/footer.php'; ?>

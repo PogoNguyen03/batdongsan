@@ -2,41 +2,56 @@
 require_once '../includes/header.php';
 require_once '../includes/db.php';
 
-// Xử lý bộ lọc
+// Lấy các tham số lọc từ GET
+$keyword = $_GET['keyword'] ?? '';
 $type = $_GET['type'] ?? '';
+$price_range = $_GET['price_range'] ?? '';
 $min_price = $_GET['min_price'] ?? '';
 $max_price = $_GET['max_price'] ?? '';
 $min_area = $_GET['min_area'] ?? '';
 $max_area = $_GET['max_area'] ?? '';
 
-// Xây dựng câu query
-$query = "SELECT * FROM properties WHERE 1=1";
+// Xây dựng câu truy vấn động
+$sql = "SELECT * FROM properties WHERE 1";
 $params = [];
 
-if ($type) {
-    $query .= " AND type = ?";
+if ($keyword !== '') {
+    $sql .= " AND title LIKE ?";
+    $params[] = '%' . $keyword . '%';
+}
+if ($type !== '') {
+    $sql .= " AND type = ?";
     $params[] = $type;
 }
-if ($min_price) {
-    $query .= " AND price >= ?";
+if ($price_range !== '') {
+    list($min, $max) = explode('-', $price_range);
+    $sql .= " AND price >= ? AND price <= ?";
+    $params[] = $min;
+    $params[] = $max;
+}
+
+// Thêm lọc theo min_price và max_price
+if ($min_price !== '') {
+    $sql .= " AND price >= ?";
     $params[] = $min_price;
 }
-if ($max_price) {
-    $query .= " AND price <= ?";
+if ($max_price !== '') {
+    $sql .= " AND price <= ?";
     $params[] = $max_price;
 }
-if ($min_area) {
-    $query .= " AND area >= ?";
+
+// Thêm lọc diện tích nếu muốn
+if ($min_area !== '') {
+    $sql .= " AND area >= ?";
     $params[] = $min_area;
 }
-if ($max_area) {
-    $query .= " AND area <= ?";
+if ($max_area !== '') {
+    $sql .= " AND area <= ?";
     $params[] = $max_area;
 }
 
-$query .= " ORDER BY created_at DESC";
-
-$stmt = $pdo->prepare($query);
+$sql .= " ORDER BY created_at DESC";
+$stmt = $pdo->prepare($sql);
 $stmt->execute($params);
 $properties = $stmt->fetchAll();
 ?>
