@@ -1,4 +1,5 @@
 <?php
+$page_name = 'login';
 session_start();
 require_once '../includes/db.php';
 
@@ -95,6 +96,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     Đăng nhập
                     <i class="bi bi-arrow-right"></i>
                 </button>
+
+                <div class="text-center mt-3">
+                    <p>Chưa có tài khoản? <a href="register.php">Đăng ký ngay</a></p>
+                </div>
             </form>
         </div>
     </div>

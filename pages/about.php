@@ -1,4 +1,5 @@
 <?php
+$page_name = 'Thông tin';
 require_once '../includes/header.php';
 ?>
 

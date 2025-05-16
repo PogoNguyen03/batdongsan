@@ -66,7 +66,7 @@ $images = json_decode($property['images'], true);
             <div class="card">
                 <div class="card-body">
                     <h2 class="card-title"><?php echo htmlspecialchars($property['title']); ?></h2>
-                    <h3 class="text-danger mb-4"><?php echo number_format($property['price']); ?> VNĐ</h3>
+                    <!-- <h3 class="text-danger mb-4"><?php echo number_format($property['price']); ?> VNĐ</h3> -->
                     
                     <div class="mb-4">
                         <h4>Thông tin chi tiết</h4>

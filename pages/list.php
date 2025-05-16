@@ -1,4 +1,5 @@
 <?php
+$page_name = 'Danh sách bất động sản';
 require_once '../includes/header.php';
 require_once '../includes/db.php';
 
@@ -122,7 +123,7 @@ $properties = $stmt->fetchAll();
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo htmlspecialchars($property['title']); ?></h5>
                                     <p class="card-text">
-                                        <strong>Giá:</strong> <?php echo number_format($property['price']); ?> triệu<br>
+                                        <!-- <strong>Giá:</strong> <?php echo number_format($property['price']); ?> triệu<br> -->
                                         <strong>Diện tích:</strong> <?php echo $property['area']; ?> m²<br>
                                         <strong>Địa chỉ:</strong> <?php echo htmlspecialchars($property['address']); ?>
                                     </p>
