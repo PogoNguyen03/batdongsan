@@ -80,7 +80,7 @@ $properties = $stmt->fetchAll();
                                 <option value="commercial">Thương mại</option>
                             </select>
                         </div>
-                        <div class="col-md-3">
+                        <!-- <div class="col-md-3">
                             <select class="form-select" name="price_range">
                                 <option value="">Khoảng giá</option>
                                 <option value="0-1000000000">Dưới 1 tỷ</option>
@@ -89,7 +89,7 @@ $properties = $stmt->fetchAll();
                                 <option value="5000000000-10000000000">5 - 10 tỷ</option>
                                 <option value="10000000000-999999999999">Trên 10 tỷ</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="col-md-2">
                             <button type="submit" class="btn btn-primary w-100">Tìm kiếm</button>
                         </div>
@@ -117,7 +117,7 @@ $properties = $stmt->fetchAll();
                         <a href="../products/view.php?id=<?php echo $property['id']; ?>" class="text-decoration-none">
                             <h5 class="card-title text-dark"><?php echo htmlspecialchars($property['title']); ?></h5>
                         </a>
-                        <p class="card-text text-danger fw-bold"><?php echo number_format($property['price']); ?> VNĐ</p>
+                        <!-- <p class="card-text text-danger fw-bold"><?php echo number_format($property['price']); ?> VNĐ</p> -->
                         <p class="card-text">
                             <i class="bi bi-geo-alt"></i> <?php echo htmlspecialchars($property['address']); ?><br>
                             <i class="bi bi-arrows-angle-expand"></i> <?php echo $property['area']; ?> m²

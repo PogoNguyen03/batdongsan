@@ -8,22 +8,20 @@
                 </div>
                 <div class="col-md-4">
                     <h5>Liên hệ</h5>
-                    <p>Email: info@batdongsan.com<br>
-                    Điện thoại: (84) 123-456-789<br>
-                    Địa chỉ: 123 Đường ABC, Quận XYZ, TP. HCM</p>
+                    <p>Email: nguyencanhphong135@gmail.com<br>
+                    Điện thoại: (84) 774 651 178<br>
+                    Địa chỉ: 1041/80/6A Trần Xuân Soạn, P. Tân Hưng, Q. 7, TP. HCM</p>
                 </div>
                 <div class="col-md-4">
                     <h5>Theo dõi chúng tôi</h5>
                     <div class="social-links">
                         <a href="#" class="me-2">Facebook</a>
-                        <a href="#" class="me-2">Twitter</a>
-                        <a href="#" class="me-2">Instagram</a>
                     </div>
                 </div>
             </div>
             <hr>
             <div class="text-center">
-                <p>&copy; <?php echo date('Y'); ?> Bất Động Sản. All rights reserved.</p>
+                <p>&copy; <?php echo date('Y'); ?> Môi giới bất động sản Nguyễn Cảnh Phong. All rights reserved.</p>
             </div>
         </div>
     </footer>

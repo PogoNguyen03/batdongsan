@@ -74,7 +74,7 @@ $properties = $stmt->fetchAll();
                                 <option value="commercial" <?php echo $type === 'commercial' ? 'selected' : ''; ?>>Thương mại</option>
                             </select>
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label class="form-label">Giá (triệu)</label>
                             <div class="row">
                                 <div class="col">
@@ -84,7 +84,7 @@ $properties = $stmt->fetchAll();
                                     <input type="number" name="max_price" class="form-control" placeholder="Đến" value="<?php echo $max_price; ?>">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="mb-3">
                             <label class="form-label">Diện tích (m²)</label>
                             <div class="row">
