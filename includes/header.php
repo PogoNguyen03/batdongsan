@@ -3,6 +3,22 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require_once __DIR__ . '/db.php';
+require_once 'config.php';
+require_once 'functions.php';
+require_once 'seo_functions.php';
+
+// Xác định loại trang hiện tại
+$current_page = 'home';
+if (strpos($_SERVER['REQUEST_URI'], 'property-detail.php') !== false) {
+    $current_page = 'property_detail';
+    // Lấy địa chỉ từ property nếu có
+    $address = isset($property['address']) ? $property['address'] : '';
+} else {
+    $address = '';
+}
+
+// Lấy SEO settings cho trang hiện tại
+$seo = get_seo_settings($current_page, $address);
 ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -10,10 +26,9 @@ require_once __DIR__ . '/db.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bất Động Sản - Trang chủ</title>
-    <meta name="keywords"
-        content="Bất Động Sản, Trang chủ, Bất động sản, nhà đất, môi giới bất động sản, TP. Hồ Chí Minh">
-    <meta name="description" content="Bất Động Sản - Trang chủ">
+    <title><?php echo htmlspecialchars($seo['title']); ?></title>
+    <meta name="keywords" content="<?php echo htmlspecialchars($seo['keywords']); ?>">
+    <meta name="description" content="<?php echo htmlspecialchars($seo['description']); ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/css/style.css">
