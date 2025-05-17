@@ -12,7 +12,6 @@ if(!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 
 $page_name = isset($page_name) ? $page_name : basename($_SERVER['PHP_SELF'], '.php');
 $stmt = $pdo->prepare("SELECT * FROM seo_settings WHERE page = ?");
-$stmt->execute([$page_name]);
 $seo = $stmt->fetch();
 ?>
 <!DOCTYPE html>
