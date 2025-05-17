@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
-            
+
             // Chuyển hướng dựa trên role
             if ($user['role'] === 'admin') {
                 header("Location: dashboard.php");
@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,7 +44,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <style>
+        a.highlight-link {
+            color: #ffc107;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a.highlight-link:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+    </style>
 </head>
+
 <body class="login-page">
     <div class="login-container">
         <div class="login-box">
@@ -98,8 +112,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </button>
 
                 <div class="text-center mt-3">
-                    <p>Chưa có tài khoản? <a href="register.php">Đăng ký ngay</a></p>
+                    <p style="color: #fff;">
+                        Chưa có tài khoản?
+                        <a href="register.php" style="color: #ffc107; text-decoration: none; font-weight: bold;">
+                            Đăng ký ngay
+                        </a>
+                    </p>
                 </div>
+
             </form>
         </div>
     </div>
@@ -107,10 +127,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Toggle password visibility
-        document.querySelector('.toggle-password').addEventListener('click', function() {
+        document.querySelector('.toggle-password').addEventListener('click', function () {
             const passwordInput = document.querySelector('#password');
             const icon = this.querySelector('i');
-            
+
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
                 icon.classList.remove('bi-eye');
@@ -123,4 +143,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         });
     </script>
 </body>
-</html> 
+
+</html>

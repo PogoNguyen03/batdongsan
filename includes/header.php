@@ -10,14 +10,46 @@ require_once __DIR__ . '/db.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bất Động Sản - Trang chủ</title>
+    <title>Chuyên Bán Nhà Đất Sổ Đỏ TP.HCM</title>
     <meta name="keywords"
-        content="Bất Động Sản, Trang chủ, Bất động sản, nhà đất, môi giới bất động sản, TP. Hồ Chí Minh">
-    <meta name="description" content="Bất Động Sản - Trang chủ">
+        content="bán nhà sổ đỏ TP.HCM, nhà đất chính chủ quận 7, mua bán nhà đất quận 4, nhà sổ đỏ Nhà Bè, môi giới nhà đất uy tín, Nguyễn Cảnh Phong, bất động sản TP.HCM, nhà phố sổ hồng, nhà đất quận 8, nhà giá tốt HCM, nhà chính chủ">
+    <meta name="description"
+        content="Nguyễn Cảnh Phong - Môi giới bất động sản chuyên bán nhà đất chính chủ, sổ đỏ, pháp lý rõ ràng tại Quận 7, Quận 4, Quận 8 và Nhà Bè, TP.HCM. Cam kết tư vấn tận tâm, hỗ trợ xem nhà miễn phí.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="http://batdongsan.local/pages/about.php" />
+    <link rel="publisher" href="http://batdongsan.local" />
+    <link rel="author" href="http://batdongsan.local/pages/about.php" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="icon" href="/assets/img/logo.ico" type="image/x-icon">
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Nguyễn Cảnh Phong",
+        "jobTitle": "Nhân viên môi giới bất động sản",
+        "url": "http://batdongsan.local",
+        "image": "http://batdongsan.local/assets/img/logo.webp",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Bất Động Sản Tư Nhân"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Quận 7, Quận 4, Quận 8, Nhà Bè",
+            "addressRegion": "TP. Hồ Chí Minh",
+            "addressCountry": "VN"
+        },
+        "description": "Nguyễn Cảnh Phong là môi giới bất động sản chuyên bán nhà đất sổ đỏ tại TP.HCM, khu vực Quận 7, Quận 4, Quận 8 và Nhà Bè.",
+        "sameAs": [
+            "https://www.facebook.com/share/15LLfMkqvJ/",
+            "https://zalo.me/0774651178",
+            "http://batdongsan.local/pages/about.php"
+        ]
+        }
+    </script>
+
 </head>
 
 <body>

@@ -17,12 +17,12 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     Quản lý liên hệ
                 </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link <?php echo $current_page === 'seo_settings.php' ? 'active' : ''; ?>" href="seo_settings.php">
                     <i class="bi bi-graph-up"></i>
                     Quản lý SEO
                 </a>
-            </li>
+            </li> -->
         </ul>
     </div>
 </nav> 

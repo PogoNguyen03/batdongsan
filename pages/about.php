@@ -22,10 +22,10 @@ require_once '../includes/header.php';
 
                     <h4 class="mt-4 mb-2 fw-semibold text-primary">Phương châm làm việc</h4>
                     <ul class="list-unstyled fs-5">
-                        <li>✅ Minh bạch – Trung thực trong mọi thông tin</li>
-                        <li>✅ Pháp lý rõ ràng – Ưu tiên nhà đất có sổ riêng</li>
-                        <li>✅ Tư vấn tận tâm – Luôn đặt lợi ích khách hàng lên hàng đầu</li>
-                        <li>✅ Cam kết sản phẩm thật – Giá trị thật – Hình ảnh thật</li>
+                        <li>✔️ Minh bạch – Trung thực trong mọi thông tin</li>
+                        <li>✔️ Pháp lý rõ ràng – Ưu tiên nhà đất có sổ riêng</li>
+                        <li>✔️ Tư vấn tận tâm – Luôn đặt lợi ích khách hàng lên hàng đầu</li>
+                        <li>✔️ Cam kết sản phẩm thật – Giá trị thật – Hình ảnh thật</li>
                     </ul>
 
                     <div class="mt-4">
