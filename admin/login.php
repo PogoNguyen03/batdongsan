@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="form-options">
                     <div class="remember-me">
                         <input type="checkbox" id="remember" name="remember">
-                        <label for="remember">Ghi nhớ đăng nhập</label>
+                        <label for="remember" style="margin-bottom: 0;">Ghi nhớ đăng nhập</label>
                     </div>
                     <a href="#" class="forgot-password">Quên mật khẩu?</a>
                 </div>

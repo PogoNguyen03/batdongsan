@@ -32,7 +32,7 @@ require_once '../includes/header.php';
                         <h5 class="fw-bold text-success">Liên hệ ngay</h5>
                         <p class="fs-5 mb-1">
                             <strong>📞 Số điện thoại:</strong> <a href="tel:0774651178" class="text-decoration-none">0774 651 178</a><br>
-                            <strong>📍 Khu vực:</strong> Quận 7, Quận 4, Quận 8, Nhà Bè – TP.HCM
+                            <strong>📍  Khu vực:</strong> Quận 7, Quận 4, Quận 8, Nhà Bè – TP.HCM
                         </p>
                     </div>
                 </div>

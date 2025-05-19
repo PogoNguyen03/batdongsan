@@ -1,5 +1,8 @@
 <?php
 require_once '../includes/header.php';
+require_once '../includes/db.php';
+require_once '../includes/config.php';
+require_once '../includes/functions.php';
 
 if(!isset($_GET['id'])) {
     header('Location: ../index.php');
@@ -17,6 +20,55 @@ if(!$property) {
 }
 
 $images = json_decode($property['images'], true);
+
+$success = false;
+$error = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_submit'])) {
+    $name = trim($_POST['name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $phone = trim($_POST['phone'] ?? '');
+    $message = trim($_POST['message'] ?? '');
+    $property_id = $_POST['property_id'] ?? null;
+
+    // Validate input
+    if (empty($name)) {
+        $error = 'Vui lòng nhập họ và tên';
+    } elseif (empty($email)) {
+        $error = 'Vui lòng nhập email';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = 'Email không hợp lệ';
+    } elseif (empty($phone)) {
+        $error = 'Vui lòng nhập số điện thoại';
+    } elseif (empty($message)) {
+        $error = 'Vui lòng nhập nội dung tin nhắn';
+    } else {
+        try {
+            $stmt = $pdo->prepare("INSERT INTO contacts (name, email, phone, message, property_id) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute([$name, $email, $phone, $message, $property_id]);
+            
+            // Gửi email thông báo
+            $to = SMTP_FROM_EMAIL;
+            $subject = "Liên hệ mới từ website bất động sản";
+            $email_message = "Có liên hệ mới từ website:\n\n";
+            $email_message .= "Họ và tên: " . $name . "\n";
+            $email_message .= "Email: " . $email . "\n";
+            $email_message .= "Số điện thoại: " . $phone . "\n";
+            $email_message .= "Nội dung: " . $message . "\n";
+            if ($property_id) {
+                $email_message .= "Bất động sản: " . $property['title'] . "\n";
+            }
+            
+            sendEmail($to, $subject, $email_message);
+            $success = true;
+            
+            // Clear form data after successful submission
+            $_POST = array();
+        } catch (PDOException $e) {
+            $error = 'Có lỗi xảy ra, vui lòng thử lại sau';
+        }
+    }
+}
 ?>
 
 <div class="container py-4">
@@ -35,7 +87,7 @@ $images = json_decode($property['images'], true);
                 <div class="carousel-inner">
                     <?php foreach($images as $index => $image): ?>
                         <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
-                            <img src="../uploads/<?php echo $image; ?>" class="d-block w-100" alt="Property Image" style="height: 40rem; object-fit: cover;">
+                            <img src="../uploads/<?php echo $image; ?>" class="d-block w-100" alt="Property Image" style="height: 100%; object-fit: cover;">
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -114,24 +166,48 @@ $images = json_decode($property['images'], true);
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form id="contactForm">
+                <?php if ($success): ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        <strong>Thành công!</strong> Cảm ơn bạn đã liên hệ. Chúng tôi sẽ phản hồi sớm nhất có thể!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($error): ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        <strong>Lỗi!</strong> <?php echo htmlspecialchars($error); ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php endif; ?>
+
+                <form method="POST" action="" id="contactForm">
+                    <input type="hidden" name="property_id" value="<?php echo $property['id']; ?>">
                     <div class="mb-3">
-                        <label for="name" class="form-label">Họ và tên</label>
-                        <input type="text" class="form-control" id="name" required>
+                        <label for="name" class="form-label">Họ và tên <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="name" name="name" required 
+                               value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="phone" class="form-label">Số điện thoại</label>
-                        <input type="tel" class="form-control" id="phone" required>
+                        <label for="phone" class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+                        <input type="tel" class="form-control" id="phone" name="phone" required
+                               value="<?php echo isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : ''; ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" required>
+                        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" id="email" name="email" required
+                               value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="message" class="form-label">Nội dung</label>
-                        <textarea class="form-control" id="message" rows="3" required></textarea>
+                        <label for="message" class="form-label">Nội dung <span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="message" name="message" rows="3" required><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : ''; ?></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Gửi yêu cầu</button>
+                    <div class="d-grid gap-2">
+                        <button type="submit" name="contact_submit" class="btn btn-primary">
+                            <i class="bi bi-send-fill me-2"></i>Gửi yêu cầu
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -144,12 +220,20 @@ function showContactForm() {
     modal.show();
 }
 
-document.getElementById('contactForm').addEventListener('submit', function(e) {
+// Xóa event listener cũ vì chúng ta đã xử lý form submission bằng PHP
+document.getElementById('contactForm').removeEventListener('submit', function(e) {
     e.preventDefault();
-    // Xử lý gửi form ở đây
-    alert('Cảm ơn bạn đã liên hệ. Chúng tôi sẽ phản hồi sớm nhất có thể!');
-    bootstrap.Modal.getInstance(document.getElementById('contactModal')).hide();
 });
+
+// Thêm code để tự động đóng modal sau khi gửi thành công
+<?php if ($success): ?>
+    setTimeout(function() {
+        var modal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
+        if (modal) {
+            modal.hide();
+        }
+    }, 2000); // Đóng modal sau 2 giây
+<?php endif; ?>
 </script>
 
 <?php require_once '../includes/footer.php'; ?> 

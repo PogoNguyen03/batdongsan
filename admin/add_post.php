@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $description = trim($_POST['description']);
     $price = trim($_POST['price']);
     $area = trim($_POST['area']);
-    $address = trim($_POST['location']);
+    $address = trim($_POST['address']);
     $bedrooms = trim($_POST['bedrooms']);
     $bathrooms = trim($_POST['bathrooms']);
     $type = trim($_POST['type']);

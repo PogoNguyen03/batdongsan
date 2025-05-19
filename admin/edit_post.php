@@ -36,16 +36,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $bathrooms = $_POST['bathrooms'];
     $type = $_POST['type'];
 
-    // Xử lý upload ảnh mới (nếu có)
+    // Xử lý hình ảnh
     $images = json_decode($property['images'], true) ?: [];
+    
+    // Xử lý xóa ảnh
+    if (isset($_POST['delete_images']) && is_array($_POST['delete_images'])) {
+        foreach ($_POST['delete_images'] as $delete_image) {
+            // Xóa file ảnh từ thư mục uploads
+            $file_path = '../uploads/' . $delete_image;
+            if (file_exists($file_path)) {
+                unlink($file_path);
+            }
+            // Xóa ảnh khỏi mảng images
+            $key = array_search($delete_image, $images);
+            if ($key !== false) {
+                unset($images[$key]);
+            }
+        }
+        // Đánh lại index của mảng
+        $images = array_values($images);
+    }
+
+    // Xử lý upload ảnh mới
     if (isset($_FILES['images']) && $_FILES['images']['name'][0] != '') {
         $upload_dir = '../uploads/';
         foreach ($_FILES['images']['tmp_name'] as $key => $tmp_name) {
             $file_name = $_FILES['images']['name'][$key];
             $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-            $new_file_name = uniqid() . '.' . $file_ext;
-            if (move_uploaded_file($tmp_name, $upload_dir . $new_file_name)) {
-                $images[] = $new_file_name;
+            $allowed_types = array('jpg', 'jpeg', 'png', 'gif');
+            
+            if (in_array($file_ext, $allowed_types)) {
+                $new_file_name = uniqid() . '.' . $file_ext;
+                if (move_uploaded_file($tmp_name, $upload_dir . $new_file_name)) {
+                    $images[] = $new_file_name;
+                }
             }
         }
     }
@@ -67,6 +91,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chỉnh sửa bài đăng</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        .image-preview {
+            position: relative;
+            display: inline-block;
+            margin: 5px;
+        }
+        .image-preview img {
+            height: 100px;
+            width: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .delete-image {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            text-align: center;
+            line-height: 25px;
+            cursor: pointer;
+        }
+        .delete-image:hover {
+            background: darkred;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -124,13 +178,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="images" class="form-label">Hình ảnh (có thể chọn thêm)</label>
-                        <input type="file" class="form-control" id="images" name="images[]" multiple accept="image/*">
-                        <div class="mt-2">
+                        <label class="form-label">Hình ảnh hiện tại</label>
+                        <div class="d-flex flex-wrap">
                             <?php foreach(json_decode($property['images'], true) as $img): ?>
-                                <img src="../uploads/<?php echo $img; ?>" alt="" style="height:60px; margin-right:5px;">
+                                <div class="image-preview">
+                                    <img src="../uploads/<?php echo $img; ?>" alt="" class="img-thumbnail">
+                                    <div class="delete-image" onclick="toggleImageDelete('<?php echo $img; ?>')">
+                                        <i class="bi bi-x"></i>
+                                    </div>
+                                    <input type="checkbox" name="delete_images[]" value="<?php echo $img; ?>" 
+                                           id="delete_<?php echo $img; ?>" style="display: none;">
+                                </div>
                             <?php endforeach; ?>
                         </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="images" class="form-label">Thêm hình ảnh mới</label>
+                        <input type="file" class="form-control" id="images" name="images[]" multiple accept="image/*">
+                        <div class="form-text">Có thể chọn nhiều ảnh (JPG, JPEG, PNG, GIF)</div>
                     </div>
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary">Cập nhật</button>
@@ -141,5 +206,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    function toggleImageDelete(imageName) {
+        const checkbox = document.getElementById('delete_' + imageName);
+        const imagePreview = checkbox.parentElement;
+        
+        if (checkbox.checked) {
+            checkbox.checked = false;
+            imagePreview.style.opacity = '1';
+        } else {
+            checkbox.checked = true;
+            imagePreview.style.opacity = '0.5';
+        }
+    }
+    </script>
 </body>
 </html> 

@@ -15,13 +15,13 @@ $properties = $stmt->fetchAll();
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
                     <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
-                    <!-- <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button> -->
+                    <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
                 </div>
 
                 <!-- Carousel Items -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="../assets/img/banner1.webp" class="d-block w-100" alt="Banner 1"
+                        <img src="../assets/img/banner1.webp?=1" class="d-block w-100" alt="Banner 1"
                             style="height: 500px; object-fit: cover;">
                         <!-- <div class="carousel-caption d-none d-md-block">
                             <h1 class="display-4 fw-bold">Tìm Kiếm Bất Động Sản Mơ Ước</h1>
@@ -30,7 +30,7 @@ $properties = $stmt->fetchAll();
                         </div> -->
                     </div>
                     <div class="carousel-item">
-                        <img src="../assets/img/banner2.webp" class="d-block w-100" alt="Banner 2"
+                        <img src="../assets/img/banner2.webp?=1" class="d-block w-100" alt="Banner 2"
                             style="height: 500px; object-fit: cover;">
                         <!-- <div class="carousel-caption d-none d-md-block">
                             <h1 class="display-4 fw-bold">Đầu Tư Thông Minh</h1>
@@ -38,14 +38,15 @@ $properties = $stmt->fetchAll();
                             <a href="list.php" class="btn btn-primary btn-lg mt-3">Khám Phá Ngay</a>
                         </div> -->
                     </div>
-                    <!-- <div class="carousel-item">
-                        <img src="../assets/img/banner3.webp" class="d-block w-100" alt="Banner 3" style="height: 500px; object-fit: cover;">
-                        <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-item">
+                        <img src="../assets/img/banner3.webp?=1" class="d-block w-100" alt="Banner 3"
+                            style="height: 500px; object-fit: cover;">
+                        <!-- <div class="carousel-caption d-none d-md-block">
                             <h1 class="display-4 fw-bold">Tư Vấn Chuyên Nghiệp</h1>
                             <p class="lead">Đội ngũ chuyên gia tư vấn giàu kinh nghiệm</p>
                             <a href="contact.php" class="btn btn-primary btn-lg mt-3">Liên Hệ Ngay</a>
-                        </div>
-                    </div> -->
+                        </div> -->
+                    </div>
                 </div>
 
                 <!-- Carousel Controls -->
