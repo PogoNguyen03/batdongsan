@@ -95,7 +95,7 @@ $saved_properties = $stmt->fetchAll();
                                                     <i class="bi bi-arrows-angle-expand"></i> <?php echo $property['area']; ?> m²
                                                 </p>
                                                 <div class="d-flex justify-content-between">
-                                                    <a href="/products/view.php?id=<?php echo $property['id']; ?>" class="btn btn-primary">Xem chi tiết</a>
+                                                    <a href="/pages/products/view.php?id=<?php echo $property['id']; ?>" class="btn btn-primary">Xem chi tiết</a>
                                                     <button class="btn btn-outline-danger remove-saved" data-id="<?php echo $property['id']; ?>">
                                                         <i class="bi bi-bookmark-dash"></i>
                                                     </button>

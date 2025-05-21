@@ -127,7 +127,7 @@ $properties = $stmt->fetchAll();
                                         <strong>Diện tích:</strong> <?php echo $property['area']; ?> m²<br>
                                         <strong>Địa chỉ:</strong> <?php echo htmlspecialchars($property['address']); ?>
                                     </p>
-                                    <a href="products/view.php?id=<?php echo $property['id']; ?>" class="btn btn-primary">Xem chi tiết</a>
+                                    <a href="/pages/products/view.php?id=<?php echo $property['id']; ?>" class="btn btn-primary">Xem chi tiết</a>
                                 </div>
                             </div>
                         </div>

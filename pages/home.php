@@ -110,12 +110,12 @@ $properties = $stmt->fetchAll();
                     $images = json_decode($property['images'], true);
                     $first_image = $images[0] ?? 'default.jpg';
                     ?>
-                    <a href="../products/view.php?id=<?php echo $property['id']; ?>" class="text-decoration-none">
+                    <a href="../pages/products/view.php?id=<?php echo $property['id']; ?>" class="text-decoration-none">
                         <img src="../uploads/<?php echo $first_image; ?>" class="card-img-top"
                             alt="<?php echo htmlspecialchars($property['title']); ?>"
                             style="height: 200px; object-fit: cover;"></a>
                     <div class="card-body">
-                        <a href="../products/view.php?id=<?php echo $property['id']; ?>" class="text-decoration-none">
+                        <a href="../pages/products/view.php?id=<?php echo $property['id']; ?>" class="text-decoration-none">
                             <h5 class="card-title text-dark"><?php echo htmlspecialchars($property['title']); ?></h5>
                         </a>
                         <!-- <p class="card-text text-danger fw-bold"><?php echo number_format($property['price']); ?> VNĐ</p> -->
@@ -123,7 +123,7 @@ $properties = $stmt->fetchAll();
                             <i class="bi bi-geo-alt"></i> <?php echo htmlspecialchars($property['address']); ?><br>
                             <i class="bi bi-arrows-angle-expand"></i> <?php echo $property['area']; ?> m²
                         </p>
-                        <a href="../products/view.php?id=<?php echo $property['id']; ?>" class="btn btn-primary">Xem chi
+                        <a href="../pages/products/view.php?id=<?php echo $property['id']; ?>" class="btn btn-primary">Xem chi
                             tiết</a>
                     </div>
 

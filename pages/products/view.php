@@ -1,8 +1,8 @@
 <?php
-require_once '../includes/header.php';
-require_once '../includes/db.php';
-require_once '../includes/config.php';
-require_once '../includes/functions.php';
+require_once '../../includes/header.php';
+require_once '../../includes/db.php';
+require_once '../../includes/config.php';
+require_once '../../includes/functions.php';
 
 if(!isset($_GET['id'])) {
     header('Location: ../index.php');
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_submit'])) {
                 <div class="carousel-inner">
                     <?php foreach($images as $index => $image): ?>
                         <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
-                            <img src="../uploads/<?php echo $image; ?>" class="d-block w-100" alt="Property Image" style="height: 100%; object-fit: cover;">
+                            <img src="../../uploads/<?php echo $image; ?>" class="d-block w-100" alt="Property Image" style="height: 100%; object-fit: cover;">
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_submit'])) {
             <div class="row">
                 <?php foreach($images as $index => $image): ?>
                     <div class="col-3 mb-3">
-                        <img src="../uploads/<?php echo $image; ?>" class="img-thumbnail" alt="Thumbnail" 
+                        <img src="../../uploads/<?php echo $image; ?>" class="img-thumbnail" alt="Thumbnail" 
                              onclick="$('#propertyCarousel').carousel(<?php echo $index; ?>)" 
                              style="height: 100px; object-fit: cover; cursor: pointer;">
                     </div>
@@ -236,4 +236,4 @@ document.getElementById('contactForm').removeEventListener('submit', function(e)
 <?php endif; ?>
 </script>
 
-<?php require_once '../includes/footer.php'; ?> 
+<?php require_once '../../includes/footer.php'; ?> 
